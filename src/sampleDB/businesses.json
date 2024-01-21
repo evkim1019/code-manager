@@ -1,0 +1,38 @@
+{
+  "29gsjdgyhw": {
+    "businessId": "29gsjdgyhw",
+    "businessName": "LA FORET",
+    "businessIntroduction": "Skin and body care business",
+    "businessAddress": "New York, NY",
+    "businessContactNumber": "926-777-4761",
+    "businessIsVarified": true,
+    "businessTaxId": "asdfTax",
+    "businessOwnedCodeGroups": [
+      "0DYWKG",
+      "033HAB",
+      "0GIHX2",
+      "07T53A",
+      "736KGA"
+    ]
+  },
+  "gpgbxz912a": {
+    "businessId": "gpgbxz912a",
+    "businessName": "Seven Star Bakery",
+    "businessIntroduction": "Most popular bakery in Providence, RI",
+    "businessAddress": "Multiple locations",
+    "businessContactNumber": "281-928-1742",
+    "businessIsVarified": false,
+    "businessTaxId": "",
+    "businessOwnedCodeGroups": ["M9RIGK", "6DKHVU", "ETCNIT"]
+  },
+  "8vgqb0dnw": {
+    "businessId": "8vgqb0dnw",
+    "businessName": "Green Sisters",
+    "businessIntroduction": "Best brunch experience",
+    "businessAddress": "Multiple locations",
+    "businessContactNumber": "488-812-9214",
+    "businessIsVarified": false,
+    "businessTaxId": "",
+    "businessOwnedCodeGroups": ["UFUVL9"]
+  }
+}

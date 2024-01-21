@@ -1,0 +1,86 @@
+{
+  "95DJJVY9S": {
+    "codeId": "95DJJVY9S",
+    "isCodeUsed": false,
+    "codeUsedDate": "",
+    "businessId": "gpgbxz912a",
+    "codeGroupId": "M9RIGK"
+  },
+  "5DHJGVDJUO": {
+    "codeId": "5DHJGVDJUO",
+    "isCodeUsed": true,
+    "codeUsedDate": "01-07-2024",
+    "businessId": "gpgbxz912a",
+    "codeGroupId": "M9RIGK"
+  },
+  "IDBWFKGGY": {
+    "codeId": "IDBWFKGGY",
+    "isCodeUsed": false,
+    "codeUsedDate": "",
+    "businessId": "gpgbxz912a",
+    "codeGroupId": "M9RIGK"
+  },
+  "0JKALNMHSG": {
+    "codeId": "0JKALNMHSG",
+    "isCodeUsed": false,
+    "codeUsedDate": "",
+    "businessId": "gpgbxz912a",
+    "codeGroupId": "M9RIGK"
+  },
+  "F6JDHSA4": {
+    "codeId": "F6JDHSA4",
+    "isCodeUsed": false,
+    "codeUsedDate": "",
+    "businessId": "gpgbxz912a",
+    "codeGroupId": "6DKHVU"
+  },
+  "HJ5D46BF": {
+    "codeId": "HJ5D46BF",
+    "isCodeUsed": true,
+    "codeUsedDate": "01-03-2024",
+    "businessId": "gpgbxz912a",
+    "codeGroupId": "6DKHVU"
+  },
+  "8HFD457FG": {
+    "codeId": "8HFD457FG",
+    "isCodeUsed": true,
+    "codeUsedDate": "01-02-2024",
+    "businessId": "gpgbxz912a",
+    "codeGroupId": "6DKHVU"
+  },
+  "BGRDH544": {
+    "codeId": "BGRDH544",
+    "isCodeUsed": false,
+    "codeUsedDate": "",
+    "businessId": "gpgbxz912a",
+    "codeGroupId": "ETCNIT"
+  },
+  "56GS2WOH": {
+    "codeId": "56GS2WOH",
+    "isCodeUsed": false,
+    "codeUsedDate": "",
+    "businessId": "gpgbxz912a",
+    "codeGroupId": "ETCNIT"
+  },
+  "T5GW3FSL": {
+    "codeId": "T5GW3FSL",
+    "isCodeUsed": true,
+    "codeUsedDate": "01-20-2024",
+    "businessId": "8vgqb0dnw",
+    "codeGroupId": "UFUVL9"
+  },
+  "RRB6O9UD": {
+    "codeId": "RRB6O9UD",
+    "isCodeUsed": false,
+    "codeUsedDate": "",
+    "businessId": "8vgqb0dnw",
+    "codeGroupId": "UFUVL9"
+  },
+  "DDS3LUIA": {
+    "codeId": "DDS3LUIA",
+    "isCodeUsed": false,
+    "codeUsedDate": "",
+    "businessId": "8vgqb0dnw",
+    "codeGroupId": "UFUVL9"
+  }
+}

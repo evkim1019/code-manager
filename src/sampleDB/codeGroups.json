@@ -1,0 +1,54 @@
+{
+  "M9RIGK": {
+    "codeGroupId": "M9RIGK",
+    "businessId": "gpgbxz912a",
+    "codeGroupTitle": "1 Free scone",
+    "codeGroupCreated": "01-16-2024",
+    "codeGroupDetail": "You will be able to have a free scone.",
+    "codeGroupDisclaimer": [
+      "One time use",
+      "At stores only",
+      "Select one between cheese, blueberry, lemon scone"
+    ],
+    "codeGroupOwnerNote": "",
+    "codeGroupExpirationDate": "06-20-2024",
+    "codeGroupExpired": false,
+    "codes": ["95DJJVY9S", "5DHJGVDJUO", "IDBWFKGGY", "0JKALNMHSG"]
+  },
+  "6DKHVU": {
+    "codeGroupId": "6DKHVU",
+    "businessId": "gpgbxz912a",
+    "codeGroupTitle": "New Year FREE dozen of dounuts",
+    "codeGroupCreated": "01-01-2024",
+    "codeGroupDetail": "Happy New year! We offer a free dozen of dounuts for our beloved customers",
+    "codeGroupDisclaimer": ["One time use", "At stores only"],
+    "codeGroupOwnerNote": "",
+    "codeGroupExpirationDate": "01-05-2024",
+    "codeGroupExpired": true,
+    "codes": ["F6JDHSA4", "HJ5D46BF", "8HFD457FG"]
+  },
+  "ETCNIT": {
+    "codeGroupId": "ETCNIT",
+    "businessId": "gpgbxz912a",
+    "codeGroupTitle": "40% off on milk breads",
+    "codeGroupCreated": "11-12-2023",
+    "codeGroupDetail": "Biggest sale on our bestseller milk breads",
+    "codeGroupDisclaimer": ["One time use", "At stores only"],
+    "codeGroupOwnerNote": "",
+    "codeGroupExpirationDate": "01-30-2024",
+    "codeGroupExpired": false,
+    "codes": ["BGRDH544", "56GS2WOH"]
+  },
+  "UFUVL9": {
+    "codeGroupId": "UFUVL9",
+    "businessId": "8vgqb0dnw",
+    "codeGroupTitle": "BBB: Boozy bottomless brunch promotion",
+    "codeGroupCreated": "01-01-2024",
+    "codeGroupDetail": "Biggest sale on our bestseller milk breads",
+    "codeGroupDisclaimer": ["One time use", "At stores only"],
+    "codeGroupOwnerNote": "",
+    "codeGroupExpirationDate": "12-01-2024",
+    "codeGroupExpired": false,
+    "codes": ["T5GW3FSL", "RRB6O9UD", "DDS3LUIA"]
+  }
+}

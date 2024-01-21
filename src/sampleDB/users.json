@@ -1,0 +1,33 @@
+{
+  "ekim": {
+    "userEmail": "ekim@asdf.com",
+    "userPassword": "asdf",
+    "userFullName": "Evee Kelly",
+    "userNumber": "913-115-3925",
+    "isBusinessOwner": true,
+    "userOwnedBusinesses": ["29gsjdgyhw", "8vgqb0dnw"],
+    "userCredit": 4,
+    "userJoinDate": "05-22-2023",
+    "userOwnedCodes": [
+      "95DJJVY9S",
+      "0JKALNMHSG",
+      "F6JDHSA4",
+      "HJ5D46BF",
+      "8HFD457FG",
+      "56GS2WOH",
+      "RRB6O9UD",
+      "DDS3LUIA"
+    ]
+  },
+  "rando": {
+    "userEmail": "rando@gmail.com",
+    "userPassword": "asdf",
+    "userFullName": "Rando May",
+    "userNumber": "",
+    "isBusinessOwner": false,
+    "userOwnedBusinesses": "",
+    "userCredit": 0,
+    "userJoinDate": "12-04-2023",
+    "userOwnedCodes": []
+  }
+}
