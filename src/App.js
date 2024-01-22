@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+
 import logo from "./logo.svg";
 import "./App.css";
+
 import LoginLandingScreen from "./screens/LoginLandingScreen";
 import SignupScreen from "./screens/SignupScreen";
 import CodeGeneratorScreen from "./screens/CodeGeneratorScreen";
@@ -8,7 +12,6 @@ import CodeListScreen from "./screens/CodeListScreen";
 import CodeDetailScreen from "./screens/CodeDetailScreen";
 
 import users from "./sampleDB/users.json";
-import { useEffect, useState } from "react";
 
 function App() {
   const [userList, setUserList] = useState([]);
