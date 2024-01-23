@@ -19,15 +19,28 @@
       "DDS3LUIA"
     ]
   },
+
   "rando": {
     "userEmail": "rando@gmail.com",
     "userPassword": "asdf",
     "userFullName": "Rando May",
     "userNumber": "",
     "isBusinessOwner": false,
-    "userOwnedBusinesses": "",
+    "userOwnedBusinesses": [],
     "userCredit": 0,
     "userJoinDate": "12-04-2023",
     "userOwnedCodes": []
+  },
+
+  "test": {
+    "userEmail": "test@asdf.com",
+    "userPassword": "asdf",
+    "userFullName": "testFirst testLast",
+    "userNumber": "917-329-7732",
+    "isBusinessOwner": true,
+    "userOwnedBusinesses": ["29gsjdgyhw", "gpgbxz912a"],
+    "userCredit": 31,
+    "userJoinDate": "12-04-2023",
+    "userOwnedCodes": ["5DHJGVDJUO", "95DJJVY9S"]
   }
 }

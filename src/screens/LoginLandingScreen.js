@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function LoginLandingScreen({ userList, setCurrentUserInfo }) {
+function LoginLandingScreen({ usersDB, setCurrentUserInfo }) {
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
 
@@ -16,13 +16,12 @@ function LoginLandingScreen({ userList, setCurrentUserInfo }) {
     setPasswordInput("");
 
     // Login success
-    for (let i = 0; i < Object.values(userList).length; i++) {
+    for (let i = 0; i < Object.values(usersDB).length; i++) {
       if (
-        Object.values(userList)[i].userEmail === emailInput &&
-        Object.values(userList)[i].userPassword === passwordInput
+        Object.values(usersDB)[i].userEmail === emailInput &&
+        Object.values(usersDB)[i].userPassword === passwordInput
       ) {
-        window.alert("Login success!");
-        setCurrentUserInfo(Object.values(userList)[i]);
+        setCurrentUserInfo(Object.values(usersDB)[i]);
       }
     }
   };

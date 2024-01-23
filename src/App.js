@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
+import { db } from "./config/firebase";
 
 import logo from "./logo.svg";
 import "./App.css";
@@ -14,12 +15,77 @@ import CodeDetailScreen from "./screens/CodeDetailScreen";
 import users from "./sampleDB/users.json";
 
 function App() {
+  const [usersDB, setUsersDB] = useState({});
+  const [codesDB, setCodesDB] = useState({});
+  const [codeGroupsDB, setCodeGroupsDB] = useState({});
+  const [businessesDB, setBusinessesDB] = useState({});
   const [userList, setUserList] = useState([]);
   const [currentUserInfo, setCurrentUserInfo] = useState({});
   const [codeDetailInfo, setCodeDetailInfo] = useState({});
 
+  const fetchDB = async () => {
+    // Fetch Codes Data
+    const codesQuerySnapshot = await getDocs(collection(db, "codes"));
+    const fetchedCodesArray = codesQuerySnapshot.docs.map((doc) => ({
+      [doc.id]: { ...doc.data() },
+    }));
+    const fetchedCodesObject = fetchedCodesArray.reduce((acc, obj) => {
+      const key = Object.keys(obj)[0];
+      const value = obj[key];
+      acc[key] = value;
+      return acc;
+    });
+    setCodesDB(fetchedCodesObject);
+
+    // Fetch Business Data
+    const businessesQuerySnapshot = await getDocs(collection(db, "businesses"));
+
+    const fetchedBusinessesArray = businessesQuerySnapshot.docs.map((doc) => ({
+      [doc.id]: { ...doc.data() },
+    }));
+    const fetchedBusinessesObject = fetchedBusinessesArray.reduce(
+      (acc, obj) => {
+        const key = Object.keys(obj)[0];
+        const value = obj[key];
+        acc[key] = value;
+        return acc;
+      }
+    );
+    setBusinessesDB(fetchedBusinessesObject);
+
+    // Fetch Code Groups Data
+    const codeGroupsQuerySnapshot = await getDocs(collection(db, "codeGroups"));
+
+    const fetchedCodeGroupsArray = codeGroupsQuerySnapshot.docs.map((doc) => ({
+      [doc.id]: { ...doc.data() },
+    }));
+    const fetchedCodeGroupsObject = fetchedCodeGroupsArray.reduce(
+      (acc, obj) => {
+        const key = Object.keys(obj)[0];
+        const value = obj[key];
+        acc[key] = value;
+        return acc;
+      }
+    );
+    setCodeGroupsDB(fetchedCodeGroupsObject);
+
+    // Fetch users Data
+    const usersQuerySnapshot = await getDocs(collection(db, "users"));
+
+    const fetchedUsersArray = usersQuerySnapshot.docs.map((doc) => ({
+      [doc.id]: { ...doc.data() },
+    }));
+    const fetchedUsersObject = fetchedUsersArray.reduce((acc, obj) => {
+      const key = Object.keys(obj)[0];
+      const value = obj[key];
+      acc[key] = value;
+      return acc;
+    });
+    setUsersDB(fetchedUsersObject);
+  };
+
   useEffect(() => {
-    setUserList(users);
+    fetchDB();
   }, []);
 
   return (
@@ -29,6 +95,10 @@ function App() {
       {currentUserInfo.userFullName ? (
         <div>
           <CodeListScreen
+            usersDB={usersDB}
+            codesDB={codesDB}
+            businessesDB={businessesDB}
+            codeGroupsDB={codeGroupsDB}
             currentUserInfo={currentUserInfo}
             setCodeDetailInfo={setCodeDetailInfo}
           />
@@ -40,7 +110,7 @@ function App() {
         </div>
       ) : (
         <LoginLandingScreen
-          userList={userList}
+          usersDB={usersDB}
           setCurrentUserInfo={setCurrentUserInfo}
         />
       )}

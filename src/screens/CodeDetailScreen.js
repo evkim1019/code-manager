@@ -1,6 +1,16 @@
 import React from "react";
 
 function CodeDetailScreen({ currentUserInfo, codeDetailInfo }) {
+  console.log("codeDetailInfo", codeDetailInfo);
+
+  // Timestamp conversion
+  const convertTimestampToMilliseconds = (timestamp) => {
+    const seconds = timestamp.seconds;
+    const nanoseconds = timestamp.nanoseconds;
+    const milliseconds = seconds * 1000 + nanoseconds / 1e6;
+    return milliseconds;
+  };
+
   return (
     <div>
       {/* To scan wrapper */}
@@ -14,7 +24,20 @@ function CodeDetailScreen({ currentUserInfo, codeDetailInfo }) {
         <p>{codeDetailInfo.codeGroupTitle}</p>
         <p>{codeDetailInfo.codeId}</p>
         <p>{codeDetailInfo.codeGroupDetail}</p>
-        <p>{codeDetailInfo.codeGroupExpirationDate}</p>
+        {/* <p>{codeDetailInfo.codeGroupExpirationDate}</p> */}
+        <p>
+          {new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          }).format(
+            new Date(
+              convertTimestampToMilliseconds(
+                codeDetailInfo.codeGroupExpirationDate
+              )
+            )
+          )}
+        </p>
       </div>
 
       {/* Code group details wrapper */}
@@ -36,9 +59,11 @@ function CodeDetailScreen({ currentUserInfo, codeDetailInfo }) {
         </div>
         {/* code detail display group */}
         <div>
-          {codeDetailInfo.codeGroupDisclaimer.map((disclaimer) => (
-            <p>{disclaimer}</p>
-          ))}
+          {codeDetailInfo.codeGroupDisclaimer
+            ? codeDetailInfo.codeGroupDisclaimer.map((disclaimer) => (
+                <p>{disclaimer}</p>
+              ))
+            : null}
           {codeDetailInfo.codeGroupOwnerNote ? (
             <p>codeDetailInfo.codeGroupOwnerNote</p>
           ) : null}
