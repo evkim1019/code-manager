@@ -25,19 +25,21 @@ function CodeDetailScreen({ currentUserInfo, codeDetailInfo }) {
         <p>{codeDetailInfo.codeId}</p>
         <p>{codeDetailInfo.codeGroupDetail}</p>
         {/* <p>{codeDetailInfo.codeGroupExpirationDate}</p> */}
-        <p>
-          {new Intl.DateTimeFormat("en-US", {
-            year: "numeric",
-            month: "numeric",
-            day: "numeric",
-          }).format(
-            new Date(
-              convertTimestampToMilliseconds(
-                codeDetailInfo.codeGroupExpirationDate
+        {codeDetailInfo.codeGroupExpirationDate ? (
+          <p>
+            {new Intl.DateTimeFormat("en-US", {
+              year: "numeric",
+              month: "numeric",
+              day: "numeric",
+            }).format(
+              new Date(
+                convertTimestampToMilliseconds(
+                  codeDetailInfo.codeGroupExpirationDate
+                )
               )
-            )
-          )}
-        </p>
+            )}
+          </p>
+        ) : null}
       </div>
 
       {/* Code group details wrapper */}

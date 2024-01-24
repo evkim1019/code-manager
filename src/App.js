@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./config/firebase";
 
@@ -13,8 +14,10 @@ import CodeListScreen from "./screens/CodeListScreen";
 import CodeDetailScreen from "./screens/CodeDetailScreen";
 
 import users from "./sampleDB/users.json";
+import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [usersDB, setUsersDB] = useState({});
   const [codesDB, setCodesDB] = useState({});
   const [codeGroupsDB, setCodeGroupsDB] = useState({});
@@ -89,32 +92,93 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Header currentUserInfo={currentUserInfo} />
+    <Router>
+      <Header
+        currentUserInfo={currentUserInfo}
+        setCurrentUserInfo={setCurrentUserInfo}
+        setIsAuthenticated={setIsAuthenticated}
+      />
       <hr />
-      {currentUserInfo.userFullName ? (
-        <div>
-          <CodeListScreen
-            usersDB={usersDB}
-            codesDB={codesDB}
-            businessesDB={businessesDB}
-            codeGroupsDB={codeGroupsDB}
-            currentUserInfo={currentUserInfo}
-            setCodeDetailInfo={setCodeDetailInfo}
+      {/* {currentUserInfo.userFullName ? ( */}
+      {isAuthenticated ? (
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <CodeListScreen
+                usersDB={usersDB}
+                codesDB={codesDB}
+                businessesDB={businessesDB}
+                codeGroupsDB={codeGroupsDB}
+                currentUserInfo={currentUserInfo}
+                setCodeDetailInfo={setCodeDetailInfo}
+              />
+            }
           />
-          <hr />
-          <CodeDetailScreen
-            currentUserInfo={currentUserInfo}
-            codeDetailInfo={codeDetailInfo}
+          <Route
+            path="/:codeId"
+            element={
+              <CodeDetailScreen
+                currentUserInfo={currentUserInfo}
+                codeDetailInfo={codeDetailInfo ? codeDetailInfo : null}
+              />
+            }
           />
-        </div>
+        </Routes>
       ) : (
-        <LoginLandingScreen
-          usersDB={usersDB}
-          setCurrentUserInfo={setCurrentUserInfo}
-        />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <LoginLandingScreen
+                usersDB={usersDB}
+                setCurrentUserInfo={setCurrentUserInfo}
+                setIsAuthenticated={setIsAuthenticated}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/register"
+            element={
+              <RegisterScreen
+                setIsAuthenticated={setIsAuthenticated}
+                setCurrentUserInfo={setCurrentUserInfo}
+              />
+            }
+          />
+        </Routes>
       )}
-    </div>
+    </Router>
+    // <div className="App">
+    //   <Header currentUserInfo={currentUserInfo} />
+    //   <hr />
+    //   {currentUserInfo.userFullName ? (
+
+    //     <div>
+    //       <CodeListScreen
+    //         usersDB={usersDB}
+    //         codesDB={codesDB}
+    //         businessesDB={businessesDB}
+    //         codeGroupsDB={codeGroupsDB}
+    //         currentUserInfo={currentUserInfo}
+    //         setCodeDetailInfo={setCodeDetailInfo}
+    //       />
+    //       <hr />
+    //       <CodeDetailScreen
+    //         currentUserInfo={currentUserInfo}
+    //         codeDetailInfo={codeDetailInfo}
+    //       />
+    //     </div>
+    //   ) : (
+    //     <LoginLandingScreen
+    //       usersDB={usersDB}
+    //       setCurrentUserInfo={setCurrentUserInfo}
+    //     />
+    //   )}
+    // </div>
   );
 }
 

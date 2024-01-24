@@ -4,6 +4,7 @@ import users from "../sampleDB/users.json";
 import businesses from "../sampleDB/businesses.json";
 import codeGroups from "../sampleDB/codeGroups.json";
 import codes from "../sampleDB/codes.json";
+import { Link } from "react-router-dom";
 
 function CodeListScreen({
   usersDB,
@@ -16,13 +17,15 @@ function CodeListScreen({
   const [isLoading, setIsLoading] = useState(true);
   const [userOwnedCodeOrganized, setUserOwnedCodeOrganized] = useState([]);
 
-  console.log("userOwnedCodeOrganized", userOwnedCodeOrganized);
   useEffect(() => {
     const createBusinessItem = () => {
       const isCodeIdDuplicate = (businessItem, codeId) => {
         return businessItem.some((itemObj) => itemObj.codeId === codeId);
       };
-
+      console.log(
+        "currentUserInfo.userOwnedCodes",
+        currentUserInfo.userOwnedCodes
+      );
       const organizedByBusiness = currentUserInfo.userOwnedCodes.reduce(
         (acc, code) => {
           const businessId = businessesDB[codesDB[code].businessId].businessId;
@@ -115,29 +118,31 @@ function CodeListScreen({
               </div>
               <div>
                 {codesArray.map((codeObj) => (
-                  <div
-                    key={codeObj.codeId}
-                    onClick={(e) => handleClick(codeObj)}
-                  >
-                    <p>
-                      CODE: {codeObj.codeId} (
-                      {codeObj.isCodeUsed ? "Used" : "Unused"})
-                    </p>
-                    <p>
-                      {new Intl.DateTimeFormat("en-US", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      }).format(
-                        new Date(
-                          convertTimestampToMilliseconds(
-                            codeGroupsDB[codeObj.codeGroupId]
-                              .codeGroupExpirationDate
+                  <Link to={codeObj.codeId}>
+                    <div
+                      key={codeObj.codeId}
+                      onClick={(e) => handleClick(codeObj)}
+                    >
+                      <p>
+                        CODE: {codeObj.codeId} (
+                        {codeObj.isCodeUsed ? "Used" : "Unused"})
+                      </p>
+                      <p>
+                        {new Intl.DateTimeFormat("en-US", {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        }).format(
+                          new Date(
+                            convertTimestampToMilliseconds(
+                              codeGroupsDB[codeObj.codeGroupId]
+                                .codeGroupExpirationDate
+                            )
                           )
-                        )
-                      )}
-                    </p>
-                  </div>
+                        )}
+                      </p>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
