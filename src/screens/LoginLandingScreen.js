@@ -23,6 +23,10 @@ function LoginLandingScreen({
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // Store login info local
+    localStorage.setItem("CM-user", true);
+
+    // Firebase authentification
     const auth = getAuth();
     try {
       await signInWithEmailAndPassword(auth, emailInput, passwordInput);
@@ -43,7 +47,7 @@ function LoginLandingScreen({
   };
 
   return (
-    <div className="screenContainer">
+    <div className="screen">
       {/* Login box */}
       <div>
         {/* Input group */}

@@ -37,7 +37,7 @@ function RegisterScreen({ setIsAuthenticated, setCurrentUserInfo }) {
     }
   };
   return (
-    <div>
+    <div className="screen">
       <h2>REGISTER</h2>
       {/* Register box */}
       <div>

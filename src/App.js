@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  browserLocalPersistence,
+  setPersistence,
+} from "firebase/auth";
+
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./config/firebase";
 
@@ -17,6 +26,7 @@ import users from "./sampleDB/users.json";
 import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [usersDB, setUsersDB] = useState({});
   const [codesDB, setCodesDB] = useState({});
@@ -85,7 +95,25 @@ function App() {
       return acc;
     });
     setUsersDB(fetchedUsersObject);
+
+    // If auth already exist in local storage
+    onAuthStateChanged(auth, (data) => {
+      if (data) {
+        setIsAuthenticated(true);
+        for (let i = 0; i < Object.values(fetchedUsersObject).length; i++) {
+          if (Object.values(fetchedUsersObject)[i].userEmail === data.email) {
+            setCurrentUserInfo(Object.values(fetchedUsersObject)[i]);
+          }
+        }
+      } else {
+        setIsAuthenticated(false);
+        setCurrentUserInfo(null);
+      }
+    });
+    setIsLoading(false);
   };
+
+  const auth = getAuth();
 
   useEffect(() => {
     fetchDB();
@@ -98,7 +126,6 @@ function App() {
         setCurrentUserInfo={setCurrentUserInfo}
         setIsAuthenticated={setIsAuthenticated}
       />
-      <hr />
       {/* {currentUserInfo.userFullName ? ( */}
       {isAuthenticated ? (
         <Routes>
@@ -120,8 +147,25 @@ function App() {
             path="/:codeId"
             element={
               <CodeDetailScreen
+                isLoading={isLoading}
+                codesDB={codesDB}
+                businessesDB={businessesDB}
+                codeGroupsDB={codeGroupsDB}
+                isAuthenticated={isAuthenticated}
                 currentUserInfo={currentUserInfo}
                 codeDetailInfo={codeDetailInfo ? codeDetailInfo : null}
+              />
+            }
+          />
+          <Route
+            path="/generator"
+            element={
+              <CodeGeneratorScreen
+                isAuthenticated={isAuthenticated}
+                currentUserInfo={currentUserInfo}
+                businessesDB={businessesDB}
+                codeGroupsDB={codeGroupsDB}
+                codesDB={codesDB}
               />
             }
           />

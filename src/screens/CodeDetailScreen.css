@@ -1,0 +1,11 @@
+.codeDetailWrapper {
+  display: flex;
+}
+.codeDetail-section-wrapper {
+  margin-bottom: 3em;
+}
+.infoPanelWrapper {
+  border: 1px solid #eeebe3;
+  padding: 2em;
+  border-radius: 10px;
+}

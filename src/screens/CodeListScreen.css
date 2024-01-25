@@ -1,0 +1,28 @@
+.listSortFunctionWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.listSearchWrapper {
+  display: flex;
+  padding: 5px 20px;
+  border: 1px solid #eeebe3;
+  margin: 0 5px;
+  border-radius: 100px;
+  min-width: 250px;
+}
+
+.listFilterWrapper {
+  display: flex;
+  /* justify-content: center; */
+}
+.listFilterWrapper > div {
+  padding: 5px 20px;
+  border: 1px solid #eeebe3;
+  margin: 0 5px;
+  border-radius: 100px;
+}
+.listFilterWrapper > div.selected {
+  border: 1px solid #eb7223;
+  background-color: #eb7223;
+}

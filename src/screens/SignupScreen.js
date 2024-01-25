@@ -33,7 +33,7 @@ function SignupScreen() {
         </div>
         {/* Input group */}
         <div>
-          <p>Business introduction</p>
+          <p>Business name</p>
           <input type="text" />
         </div>
         {/* Input group */}

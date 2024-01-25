@@ -1,0 +1,15 @@
+.header-component-wrapper {
+  background-color: #eeebe3;
+  padding: 3vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-component-wrapper * {
+  color: #0a0a0a;
+}
+.header-account {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}

@@ -6,6 +6,8 @@ import codeGroups from "../sampleDB/codeGroups.json";
 import codes from "../sampleDB/codes.json";
 import { Link } from "react-router-dom";
 
+import "./CodeListScreen.css";
+
 function CodeListScreen({
   usersDB,
   codesDB,
@@ -22,34 +24,38 @@ function CodeListScreen({
       const isCodeIdDuplicate = (businessItem, codeId) => {
         return businessItem.some((itemObj) => itemObj.codeId === codeId);
       };
-      console.log(
-        "currentUserInfo.userOwnedCodes",
-        currentUserInfo.userOwnedCodes
-      );
-      const organizedByBusiness = currentUserInfo.userOwnedCodes.reduce(
-        (acc, code) => {
-          const businessId = businessesDB[codesDB[code].businessId].businessId;
+      if (
+        currentUserInfo.userOwnedCodes &&
+        currentUserInfo.userOwnedCodes.length > 1
+      ) {
+        const organizedByBusiness = currentUserInfo.userOwnedCodes.reduce(
+          (acc, code) => {
+            const businessId =
+              businessesDB[codesDB[code].businessId].businessId;
 
-          if (acc[businessId]) {
-            // If the business key already exists, append the code object
-            if (!isCodeIdDuplicate(acc[businessId], codesDB[code].codeId)) {
-              acc[businessId].push(codesDB[code]);
+            if (acc[businessId]) {
+              // If the business key already exists, append the code object
+              if (!isCodeIdDuplicate(acc[businessId], codesDB[code].codeId)) {
+                acc[businessId].push(codesDB[code]);
+              }
+            } else {
+              // If the business key does not exist, create a new key-value pair
+              acc[businessId] = [codesDB[code]];
             }
-          } else {
-            // If the business key does not exist, create a new key-value pair
-            acc[businessId] = [codesDB[code]];
-          }
 
-          return acc;
-        },
-        {}
-      );
+            return acc;
+          },
+          {}
+        );
+        const resultArray = Object.keys(organizedByBusiness).map((key) => ({
+          [key]: organizedByBusiness[key],
+        }));
 
-      const resultArray = Object.keys(organizedByBusiness).map((key) => ({
-        [key]: organizedByBusiness[key],
-      }));
+        setUserOwnedCodeOrganized(resultArray);
+      } else {
+        setUserOwnedCodeOrganized([]);
+      }
 
-      setUserOwnedCodeOrganized(resultArray);
       setIsLoading(false);
     };
 
@@ -72,36 +78,44 @@ function CodeListScreen({
     return milliseconds;
   };
 
+  console.log("userOwnedCodeOrganized", userOwnedCodeOrganized);
+
   return (
-    <div>
+    <div className="screen">
       {/* Manage my business codes button wrapper */}
-      <div>
-        <button>Generate codes</button>
-        <button>Manage my business codes</button>
+      <div className="buttonWrapper">
+        <Link to="/generator" className="button-primary">
+          Generate codes
+        </Link>
+        <button className="button-primary">Manage my business codes</button>
       </div>
 
-      {/* Search */}
-      <div>
-        <p>--- Search ---</p>
-      </div>
+      {/* Sort functions wrapper */}
+      <div className="listSortFunctionWrapper">
+        {/* Filters wrapper */}
+        <div className="listFilterWrapper">
+          {/* Filter */}
+          <div className="selected">
+            <p>All</p>
+          </div>
+          {/* Filter */}
+          <div>
+            <p>Unused</p>
+          </div>
+          {/* Filter */}
+          <div>
+            <p>Used</p>
+          </div>
+          {/* Filter */}
+          <div>
+            <p>Expired</p>
+          </div>
+        </div>
 
-      {/* Filters wrapper */}
-      <div>
-        {/* Filter */}
-        <div>
-          <p>All</p>
-        </div>
-        {/* Filter */}
-        <div>
-          <p>Unused</p>
-        </div>
-        {/* Filter */}
-        <div>
-          <p>Used</p>
-        </div>
-        {/* Filter */}
-        <div>
-          <p>Expired</p>
+        {/* Search */}
+        <div className="listSearchWrapper">
+          <p>/icon/</p>
+          <p>Search</p>
         </div>
       </div>
 
@@ -112,39 +126,75 @@ function CodeListScreen({
           const codesArray = obj[businessId];
 
           return (
-            <div key={businessId}>
+            <div key={businessId} className="list-section">
               <div>
-                <h2>{businessesDB[businessId].businessName}</h2>
+                <p className="font-accent-large">
+                  {businessesDB[businessId].businessName}
+                </p>
               </div>
-              <div>
-                {codesArray.map((codeObj) => (
-                  <Link to={codeObj.codeId}>
-                    <div
-                      key={codeObj.codeId}
-                      onClick={(e) => handleClick(codeObj)}
-                    >
-                      <p>
-                        CODE: {codeObj.codeId} (
-                        {codeObj.isCodeUsed ? "Used" : "Unused"})
-                      </p>
-                      <p>
-                        {new Intl.DateTimeFormat("en-US", {
-                          year: "numeric",
-                          month: "numeric",
-                          day: "numeric",
-                        }).format(
-                          new Date(
-                            convertTimestampToMilliseconds(
-                              codeGroupsDB[codeObj.codeGroupId]
-                                .codeGroupExpirationDate
-                            )
-                          )
+              {userOwnedCodeOrganized.length > 0 ? (
+                <div>
+                  {codesArray.map((codeObj) => (
+                    <Link to={codeObj.codeId} className="hover-pointer">
+                      <div
+                        className="list-item"
+                        key={codeObj.codeId}
+                        onClick={(e) => handleClick(codeObj)}
+                      >
+                        <div>
+                          <p className="font-small">
+                            Until{" "}
+                            {new Intl.DateTimeFormat("en-US", {
+                              year: "numeric",
+                              month: "numeric",
+                              day: "numeric",
+                            }).format(
+                              new Date(
+                                convertTimestampToMilliseconds(
+                                  codeGroupsDB[codeObj.codeGroupId]
+                                    .codeGroupExpirationDate
+                                )
+                              )
+                            )}
+                          </p>
+                          <div>
+                            <p
+                              className="font-xx-large"
+                              style={
+                                codeObj.isCodeUsed
+                                  ? {
+                                      opacity: 0.5,
+                                    }
+                                  : null
+                              }
+                            >
+                              {codeGroupsDB[codeObj.codeGroupId].codeGroupTitle}
+                            </p>
+                            <p>{codeObj.codeGroupsTitle}</p>
+                          </div>
+                        </div>
+
+                        {/* <p className="font-small">Expires</p> */}
+                        {codeObj.isCodeUsed ? (
+                          <div>
+                            <p className="" style={{ opacity: 0.5 }}>
+                              USED
+                            </p>
+                          </div>
+                        ) : (
+                          <div>
+                            <p className="button-primary">View details</p>
+                          </div>
                         )}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <div>
+                  <p>There is no code</p>
+                </div>
+              )}
             </div>
           );
         })

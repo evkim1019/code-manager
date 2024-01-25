@@ -1,31 +1,108 @@
-.App {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@200;400;700&display=swap");
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  font-family: "Chivo Mono", monospace;
+  color: #eeebe3;
+  margin: 0;
+  text-decoration: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.screen {
+  background-color: #1f1f1f;
   min-height: 100vh;
+  padding: 3vw;
+}
+.avatar {
+  width: 30px;
+  height: 30px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background-color: #eb7223;
+  border-radius: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.display-inline {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+.spacer-small {
+  height: 1em;
+}
+.spacer-large {
+  height: 3em;
+}
+.hover-pointer:hover {
+  cursor: pointer;
+}
+
+.font-accent-large {
+  font-size: 5em;
+}
+.font-x-large {
+  font-size: x-large;
+}
+.font-xx-large {
+  font-size: xx-large;
+}
+.font-small {
+  font-size: small;
+  color: #eb7223;
+}
+.font-badge {
+  font-size: small;
+  background-color: #eeebe3;
+  color: #1f1f1f;
+  padding: 3px 7px;
+  border-radius: 100px;
+  width: fit-content;
+}
+
+.list-section {
+  margin-top: 5em;
+}
+.list-item {
+  padding-bottom: 5px;
+  border-bottom: 3px solid #eeebe3;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.buttonWrapper {
+  padding: 20px 0;
+  text-align: center;
+  margin-bottom: 5em;
+}
+.button-primary {
+  padding: 5px 15px;
+  background-color: #d1ec3f;
+  color: #1f1f1f;
+  margin: 10px;
+  width: fit-content;
+}
+.button-primary * {
+  color: #1f1f1f;
+}
+
+/* Popup */
+.popupWrapper {
+  position: relative;
+  margin: 0 auto;
+}
+.popupCloseButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eb7223;
+  color: #1f1f1f;
 }
 
 @keyframes App-logo-spin {
